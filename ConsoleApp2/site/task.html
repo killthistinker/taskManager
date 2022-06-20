@@ -1,0 +1,27 @@
+@{
+Layout = "layout";
+}
+
+<div class="info-container">
+    <h2 class="about-head list">Задача #@Model.Task.Id</h2>
+    <div class="about-task-info">
+        <div class="about-task">
+            <p class="about-id">Исполнитель задачи - @Model.Task.UserName</p>
+            <p class="about-name">Дата создания - @Model.Task.DateCreation</p>
+            <p class="about-surname">Дата выполнения - @Model.Task.DateExpiration</p>
+        </div>
+        <div class="about-task-information">
+            <div class="task-info-actions">
+                @if(@Model.Task.State == "new")
+                {
+                <a class="more" href="http://localhost:8000/excute/index.html?id=@Model.Task.Id">Выполнить</a>
+                }
+                <a class="more" href="http://localhost:8000/delete/index.html?id=@Model.Task.Id">Удалить</a>
+            </div>
+            <h2 class="about-description">Описание задания</h2>
+        </div>
+    </div>
+    <div class="task-body">
+        <p class="task-description">@Model.Task.Description</p>
+    </div>
+</div>

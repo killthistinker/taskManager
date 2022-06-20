@@ -1,0 +1,50 @@
+@{
+Layout = "layout";
+}
+
+<h1 class="list">Список Задач</h1>
+<div class="menu">
+    <div class="tasks-header">
+        <div class="task-head">
+            <p class="id">ID</p>
+            <p class="header">Заголовок</p>
+            <p class="user-name">Имя исполнителя</p>
+            <p class="create-date">Дата создания</p>
+            <p class="state">Статус</p>
+            <p class="actions">Действия</p>
+        </div>
+        @foreach(var employee in @Model.Tasks){
+        <div class="task-container">
+            <div class="task-info">
+                <p class="task-id">@employee.Id</p>
+                <a class="task-header" href="http://localhost:8000/info/index.html?id=@employee.Id">@employee.Header</a>
+                <p class="task-name">@employee.UserName</p>
+                <p class="task-create-date">@employee.DateCreation</p>
+                <p class="task-state">@employee.State</p>
+                <div class="task-actions">
+                    @if(employee.State == "new")
+                    {
+                    <a class="more" href="http://localhost:8000/excute/index.html?id=@employee.Id">Выполнить</a>
+                    }
+                    <a class="more" href="http://localhost:8000/delete/index.html?id=@employee.Id">Удалить</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+    <div class="form-container">
+        <h2 class="add-new">Добавить новую</h2>
+        <form class="task-add-form" action="http://localhost:8000/index.html" method="post">
+            <label for="head">Заголовок</label>
+            <input class="task-input" name="head" type="text">
+            <label for="name">Имя исполнителя</label>
+            <input class="task-input" name="name" type="text">
+            <label for="date">Дата окончания</label>
+            <input class="task-input" name="date" type="text">
+            <label for="description">Описание задачи</label>
+            <input class="task-input description-input" name="description" type="text">
+            <button class="form-btn" type="submit">Добавить</button>
+        </form>
+    </div>
+</div>
